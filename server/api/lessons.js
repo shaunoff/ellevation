@@ -77,7 +77,7 @@ router.post('/comment/:id', (req, res, next) => {
           {
             model: Comment,
             include: {all: true}
-          }
+          },
           {
             model: Student,
             include: {all: true}
