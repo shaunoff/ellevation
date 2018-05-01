@@ -1,14 +1,29 @@
 import React from 'react';
-import {Rating, Button, Icon} from 'graphene-ui'
+import {Rating, Button, Icon,DropDown,Select} from 'graphene-ui'
+
+const dummyUsers = [
+	"shutch@gmail.com",
+	"gdavid@gmail.com",
+	"fwest@gmail.com"
+]
+
 
 const LessonInformation = ({lesson, updateLesson}) => (
 	<div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
 		<div style={{color: '#585858', fontSize: '28px', fontWeight: 700}}>Hanging HashTags</div>
 		<div style={{color: '#ccc', fontSize: '16px', fontWeight: 700}}>Building backgrounds, demonstrating experiences</div>
-		<Rating/>
+		<Rating onChange={()=>{console.log("ratting changed")}}/>
 		<div style={{display: 'flex'}}>
 			<Button icon="star" count={lesson.saves} onClick={()=> updateLesson({saves: lesson.saves + 1})}>Save</Button>
-			<Button icon="like" count={12}>Likes</Button>
+			<Select default="Share" onChange={()=>console.log('selection')}>
+      {({selection,open,onChange})=>(
+        <React.Fragment>
+          <Select.Selection name="shutch@gmail.com" label="Shaun H" onChange={onChange}/>
+          <Select.Selection name="test1@gmail.com" label="David G" onChange={onChange}/>
+					<Select.Selection name="ghughes@gmail.com" label="Peter S" onChange={onChange}/>
+        </React.Fragment>
+      )}
+    </Select>
 			{lesson.comments && <Button icon="comment" count={lesson.comments.length}>Comments</Button>}
 		</div>
 	</div>
