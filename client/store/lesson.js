@@ -16,7 +16,7 @@ const defaultLesson = {}
  * ACTION CREATORS
  */
 const getLesson = lesson => ({type: GET_LESSON, lesson})
-const updateLesson = () => ({type: UPDATE_LESSON})
+
 
 /**
  * THUNK CREATORS
@@ -28,14 +28,27 @@ export const fetchLesson = () =>
         dispatch(getLesson(res.data || defaultLesson)))
       .catch(err => console.log(err))
 
+export const updateLesson = (data) => dispatch => {
+    axios.put(`/api/lesson/1`,data)
+      .then(res => {
+				dispatch(getLesson(res.data))
+			})
+      .catch(err => console.log(err))
+}
 
+export const addComment = (text) => dispatch => {
+    axios.post(`/api/lesson/comment/1`,text)
+      .then(res => {
+				dispatch(getLesson(res.data))
+			})
+      .catch(err => console.log(err))
+}
 
 
 /**
  * REDUCER
  */
 export default function (state = defaultLesson, action) {
-  console.log(action)
   switch (action.type) {
     case GET_LESSON:
       return action.lesson

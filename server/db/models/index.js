@@ -17,6 +17,9 @@ const Resource = require('./resource')
 Lesson.hasMany(Comment)
 Comment.belongsTo(Lesson)
 
+User.hasMany(Comment)
+Comment.belongsTo(User)
+
 Lesson.hasMany(Resource)
 Resource.belongsTo(Lesson)
 
@@ -32,8 +35,9 @@ Example.belongsTo(Lesson)
 Lesson.hasOne(About)
 About.belongsTo(Lesson)
 
-Student.belongsToMany(Lesson, {through: 'learners'})
-Lesson.belongsToMany(Student, {through: 'learners'})
+Lesson.hasMany(Student)
+Student.belongsTo(Lesson)
+
 
 module.exports = {
   User,

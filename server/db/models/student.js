@@ -3,7 +3,13 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Student = db.define('student', {
-  text: {
+  grade: {
+    type: Sequelize.INTEGER,
+  },
+  name: {
+    type: Sequelize.TEXT,
+  },
+  level: {
     type: Sequelize.TEXT,
   }
 })

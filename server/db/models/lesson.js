@@ -5,6 +5,10 @@ const db = require('../db')
 const Lesson = db.define('lesson', {
   name: {
     type: Sequelize.TEXT,
+  },
+  saves: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 })
 
